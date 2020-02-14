@@ -1,7 +1,7 @@
 import struct
 import socket
 
-class Ethernet:
+class Frame:
   def __init__(self, raw_data):
     # Unpack 6 bytes, 6 bytes, and 2 bytes as big endian.
     self.dest_byte_addr, self.src_byte_addr, self.ether_type = struct.unpack('! 6s 6s H', raw_data[:14])
@@ -25,6 +25,6 @@ class Ethernet:
     return '0x{:04x}'.format(self.ether_type)
 
   # Print out the ethernet.
-  def print_ethernet_frame(self):
+  def print_frame(self):
     print('Ethernet Frame:')
     print('Destination: {}, Source: {}, EtherType: {}\n'.format(self.get_dest_mac_addr(), self.get_src_mac_addr(), self.get_ether_type()))
