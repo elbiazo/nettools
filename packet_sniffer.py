@@ -11,5 +11,6 @@ while True:
   packet = Packet(frame.raw_data)
 
   segment = Segment(packet.raw_data, packet.protocol)
-
-  segment.print_tcp()
+  
+  if segment.src_port == 80:
+    print("\nIP: {}, Dest Port: {}, Data: {}\n".format(packet.get_src_ip_addr(), segment.dest_port, segment.data))
